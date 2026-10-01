@@ -1,0 +1,8 @@
+import { useFrame, useRef } from 'react'
+
+export default function OrbitalRing({ radius = 8 }) {
+  const ringA = useRef(null); const ringB = useRef(null); const satsA = useRef(null); const satsB = useRef(null)
+  useFrame(({ clock }) => { const time = clock.elapsedTime; if (ringA.current) ringA.current.rotation.y = time * .025; if (ringB.current) ringB.current.rotation.y = -time * .018; if (satsA.current) satsA.current.rotation.y = time * .16; if (satsB.current) satsB.current.rotation.y = -time * .11 })
+  const R1 = radius + 1.5; const R2 = radius + 2.6
+  return <group><group rotation={[Math.PI * .35, 0, Math.PI * .14]}><group ref={ringA}><mesh rotation={[Math.PI / 2, 0, 0]}><torusGeometry args={[R1, .006, 8, 160]} /><meshBasicMaterial color="#4fd1ff" transparent opacity={.24} depthWrite={false} /></mesh></group><group ref={satsA}>{Array.from({ length: 8 }).map((_, index) => { const angle = index / 8 * Math.PI * 2; return <mesh key={index} position={[Math.cos(angle) * R1, 0, Math.sin(angle) * R1]}><sphereGeometry args={[.04, 8, 8]} /><meshBasicMaterial color="#4fd1ff" /></mesh> })}</group></group><group rotation={[Math.PI * .62, Math.PI * .2, 0]}><group ref={ringB}><mesh rotation={[Math.PI / 2, 0, 0]}><torusGeometry args={[R2, .004, 8, 160]} /><meshBasicMaterial color="#a06cff" transparent opacity={.16} depthWrite={false} /></mesh></group><group ref={satsB}>{Array.from({ length: 5 }).map((_, index) => { const angle = index / 5 * Math.PI * 2; return <mesh key={index} position={[Math.cos(angle) * R2, 0, Math.sin(angle) * R2]}><sphereGeometry args={[.03, 8, 8]} /><meshBasicMaterial color="#a06cff" /></mesh> })}</group></group></group>
+}

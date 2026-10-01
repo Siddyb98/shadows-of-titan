@@ -1,0 +1,161 @@
+// Master registry of every fragment key in the world.
+export const FRAGMENT_KEYS = {
+  'MYTH-001X': {
+    id: 'MYTH-001X',
+    source: 'BOOK',
+    location: 'Chapter 48 - the tribunal reveals her designation.',
+    description: 'The true designation of the Quasar-class subject.',
+  },
+  'AER-002': {
+    id: 'AER-002',
+    source: 'BOOK',
+    location: "Chapter 22 - Dr. Vyre's private log.",
+    description: "The project number assigned to Vyre's terraforming research.",
+  },
+  'CAT-SYNC-04': {
+    id: 'CAT-SYNC-04',
+    source: 'BOOK',
+    location: 'Chapter 35 - Vault Zero access log.',
+    description: 'The fourth bio-sync protocol of the Catalyst Engine.',
+  },
+  'K9-DELTA': {
+    id: 'K9-DELTA',
+    source: 'BOOK',
+    location: 'Chapter 51 - Nocturne Annex corridor.',
+    description: 'Nocturne Annex clearance code.',
+  },
+  'M-1YTH-SEED': {
+    id: 'M-1YTH-SEED',
+    source: 'BOOK',
+    location: 'Chapter 57 - Cryotherne Vault Zero.',
+    description: 'The label on the sealed Genesis Capsule.',
+  },
+  'PROTO-NOVA': {
+    id: 'PROTO-NOVA',
+    source: 'BOOK',
+    location: 'Chapter 61 - the buried Protocol Nova file.',
+    description: 'The silent AI-run purge.',
+  },
+  'BLOOMHOST-1': {
+    id: 'BLOOMHOST-1',
+    source: 'BOOK',
+    location: 'Chapter 65 - beneath the Catalyst Sprawl.',
+    description: 'Project Bloomhost. The seed chamber.',
+  },
+  'VEX-07-OMEGA': {
+    id: 'VEX-07-OMEGA',
+    source: 'VEX TERMINAL',
+    location: 'Type `purge` three times in the VEX terminal.',
+    description: "The rogue AI fragment's self-designation.",
+  },
+  'SOLARIS-FIST-01': {
+    id: 'SOLARIS-FIST-01',
+    source: 'BOOK',
+    location: "Chapter 51 - Vexal's raid on the Tribunal.",
+    description: "Darius's paternal bloodline seal - the name beneath the mask.",
+  },
+  'ROT-OMEGA-13': {
+    id: 'ROT-OMEGA-13',
+    source: 'BOOK',
+    location: "Chapter 44 - the Ashking's collapse.",
+    description: "Vexal's true prototype batch number.",
+  },
+  'KING-LINE-01': {
+    id: 'KING-LINE-01',
+    source: 'VEX TERMINAL',
+    location: 'Decrypt the Vault Ascendant Womb logs.',
+    description: "The Catalyst fragment embedded in Helios's embryo.",
+  },
+  'FROSTBORNE-ZERO': {
+    id: 'FROSTBORNE-ZERO',
+    source: 'BOOK',
+    location: 'Chapter 55 - the Lake of Silence.',
+    description: "The fossil record Eira's cryo-signature matches.",
+  },
+  'NULL-EDGE-09': {
+    id: 'NULL-EDGE-09',
+    source: 'VEX TERMINAL',
+    location: 'Type `unmake` after `purge` twice.',
+    description: "The single recorded activation of Lynx's full field.",
+  },
+  'ADAPT-STACK-7': {
+    id: 'ADAPT-STACK-7',
+    source: 'BOOK',
+    location: "Chapter 58 - the Forge Dregs' last stand.",
+    description: "Kael Drayk's cellular adaptation index at terminal logging.",
+  },
+  'SEEDLINE-01': {
+    id: 'SEEDLINE-01',
+    source: 'BOOK',
+    location: 'Chapter 62 - the Bleeding Tree.',
+    description: "Rhea Vaelith's mutagenic root-lineage trace.",
+  },
+  'GRAV-CHILD-0': {
+    id: 'GRAV-CHILD-0',
+    source: 'VEX TERMINAL',
+    location: 'Type `float` twice, then `weight` once.',
+    description: "Synn Astra's pre-birth gravity signature anomaly.",
+  },
+  'WAVE-CRACK-3': {
+    id: 'WAVE-CRACK-3',
+    source: 'BOOK',
+    location: 'Chapter 53 - the Dominion Ceremony broadcast breach.',
+    description: "Taryn Faye's open sonic micro-rift.",
+  },
+  'OBSIDIAN-OATH': {
+    id: 'OBSIDIAN-OATH',
+    source: 'VEX TERMINAL',
+    location: 'Type `swear` after `purge` four times.',
+    description: "Cyris Zehn's withdrawn Obsidian Annex report.",
+  },
+  'NOCT-LOOP-11': {
+    id: 'NOCT-LOOP-11',
+    source: 'BOOK',
+    location: "Chapter 60 - Bryn's shadow walks alone.",
+    description: "Bryn Alaric's independent-shadow incident.",
+  },
+  'PHASE-VOID-2': {
+    id: 'PHASE-VOID-2',
+    source: 'BOOK',
+    location: 'Chapter 64 - Lyra phases inside the Well.',
+    description: 'The tone Lyra came back humming.',
+  },
+  'FAULT-CORE-1': {
+    id: 'FAULT-CORE-1',
+    source: 'BOOK',
+    location: 'Chapter 66 - the seismic reset.',
+    description: "Korrick Vail's un-released tectonic potential.",
+  },
+  'AAN-PARADOX': {
+    id: 'AAN-PARADOX',
+    source: 'AAN INTERNAL',
+    location: 'Helios Vault mutation correction records.',
+    description: 'The Mutation Paradox and the hidden Apex correction procedures.',
+  },
+  'CATALYST-DEPENDENCY': {
+    id: 'CATALYST-DEPENDENCY',
+    source: 'AAN INTERNAL',
+    location: 'Buried emergency climate protocols.',
+    description: 'The truth that Titan cannot survive without the Catalyst Engine.',
+  },
+  'SUPREMACY-PROTOCOL': {
+    id: 'SUPREMACY-PROTOCOL',
+    source: 'AAN INTERNAL',
+    location: 'Unofficial Apex Supremacy directive.',
+    description: 'The concealed policy governing non-Apex Nova-tier mutations.',
+  },
+  'LEGACY-KEYS': {
+    id: 'LEGACY-KEYS',
+    source: 'AAN INTERNAL',
+    location: 'Ascension Council neural-lock inventory.',
+    description: 'The scattered Engine keys that could reset or rewrite Titan\'s future.',
+  },
+  'BIG-O-01': {
+    id: 'BIG-O-01',
+    source: 'BOOK',
+    location: 'Chapter 1 - Myth enters the Big O.',
+    description: 'The first recovery record connecting Myth to Vexal Ophedius and the Undercity enclave.',
+  },
+}
+
+export const TOTAL_FRAGMENTS = Object.keys(FRAGMENT_KEYS).length

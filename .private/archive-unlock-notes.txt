@@ -1,0 +1,95 @@
+SHADOWS OF TITAN - ARCHIVE UNLOCK NOTES
+========================================
+Private development reference. This file is not imported by the app and is not in public/.
+
+LOGIN / CALLSIGNS
+-----------------
+The credential gate accepts any non-empty callsign with at least 3 characters.
+Calls are normalized to uppercase and limited to 24 characters.
+Reserved authority callsign: AAN-000
+Authority callsign grants VOID / C4 clearance and full archive unlocks.
+Auth storage: sot-auth-v1
+Progression storage: sot-progress-v1-{CALLSIGN}
+Default clearance after login: CITIZEN / C0
+
+CLEARANCE TIERS
+---------------
+C0  CITIZEN  - public archive sections
+C1  ECHELON  - personnel and selected records
+C2  APEX     - Codex and restricted dossiers
+C3  COUNCIL  - Council-only records and high-security personnel
+C4  VOID     - highest tier; granted by reserved authority callsign AAN-000
+
+PERSONNEL CALLSIGNS / ARCHIVE IDS
+---------------------------------
+MYTH-001X       archive id: myth-001x       designation: PER-001X       C3
+SOLARIS-FIST    archive id: solaris-fist    designation: PER-047B       C2
+RADIANT-SPEAR   archive id: radiant-spear   designation: PER-001         C3
+RAZORHAWK       archive id: razorhawk       designation: PER-CMD-01      C3
+WHITE-WINTER    archive id: white-winter    designation: PER-212         C2
+ABSOLUTE-ZERO   archive id: absolute-zero   designation: PER-088         C2
+ROT-SAINT       archive id: rot-saint       designation: PER-OMEGA-01    C3
+BLIGHTHEART     archive id: blightheart     designation: PER-OMEGA-02    C3 (Council-only)
+QUANTUM-DRIFT   archive id: quantum-drift   designation: PER-419         C2
+BREAKING-POINT  archive id: breaking-point  designation: PER-OMEGA-03    C3
+THORNMOTHER     archive id: thornmother     designation: PER-VER-12       C2
+HALFLIGHT       archive id: halflight       designation: PER-G-08         C2
+NIGHTSHADE      archive id: nightshade      designation: PER-137         C3
+LOWORBIT        archive id: loworbit        designation: PER-540         C1
+KINETIC-SURGE   archive id: kinetic-surge   designation: PER-092         C1
+SONIC-REND      archive id: sonic-rend      designation: PER-611         C1
+PRISMBREAKER    archive id: prismbreaker    designation: PER-215         C1
+SLIPLAW         archive id: sliplaw         designation: PER-ENF-44       C2
+GALE            archive id: gale            designation: PER-VAN-07       C1
+BLOOMTHORN      archive id: bloomthorn      designation: PER-342         C1
+EKKROS          archive id: ekros            designation: PER-VLT-OMEGA    C4
+
+FRAGMENT IDS
+------------
+MYTH-001X            BOOK          Chapter 48 - tribunal reveals designation
+AER-002              BOOK          Chapter 22 - Dr. Vyre's private log
+CAT-SYNC-04          BOOK          Chapter 35 - Vault Zero access log
+K9-DELTA             BOOK          Chapter 51 - Nocturne Annex corridor
+M-1YTH-SEED          BOOK          Chapter 57 - Cryotherne Vault Zero
+PROTO-NOVA           BOOK          Chapter 61 - buried Protocol Nova file
+BLOOMHOST-1          BOOK          Chapter 65 - beneath Catalyst Sprawl
+VEX-07-OMEGA         VEX TERMINAL  Type purge three times
+SOLARIS-FIST-01      BOOK          Chapter 51 - Vexal raid on Tribunal
+ROT-OMEGA-13         BOOK          Chapter 44 - Ashking collapse
+KING-LINE-01         VEX TERMINAL  Decrypt Vault Ascendant Womb logs
+FROSTBORNE-ZERO      BOOK          Chapter 55 - Lake of Silence
+NULL-EDGE-09         VEX TERMINAL  Type unmake after purge twice
+ADAPT-STACK-7        BOOK          Chapter 58 - Forge Dregs' last stand
+SEEDLINE-01          BOOK          Chapter 62 - Bleeding Tree
+GRAV-CHILD-0         VEX TERMINAL  Type float twice, then weight once
+WAVE-CRACK-3         BOOK          Chapter 53 - Dominion Ceremony breach
+OBSIDIAN-OATH        VEX TERMINAL  Type swear after purge four times
+NOCT-LOOP-11         BOOK          Chapter 60 - Bryn's shadow walks alone
+PHASE-VOID-2         BOOK          Chapter 64 - Lyra phases inside the Well
+FAULT-CORE-1         BOOK          Chapter 66 - seismic reset
+AAN-PARADOX          AAN INTERNAL  Helios Vault mutation correction records
+CATALYST-DEPENDENCY  AAN INTERNAL  Buried emergency climate protocols
+SUPREMACY-PROTOCOL   AAN INTERNAL  Unofficial Apex Supremacy directive
+LEGACY-KEYS          AAN INTERNAL  Ascension Council neural-lock inventory
+
+SPECIAL ARCHIVE ROUTES
+----------------------
+/login
+/archives
+/archives/console
+/archives/personnel/{archive-id}
+/archives/codex/{archive-id}
+/archives/geosphere/{archive-id}
+/archives/bestiary/{archive-id}
+/archives/chronicle/{archive-id}
+/archives/culture/{archive-id}
+/secret
+/access-denied
+
+NOTES
+-----
+- Fragment keys are case-insensitive at entry because FragmentLock uppercases input.
+- Failed fragment attempts add an access violation and impose a timed lockout.
+- Personnel archive IDs are route IDs; codenames are the visible archive names.
+- EKKROS is the only current personnel entry at legacy VOID/C4 clearance.
+- The existing app has no server-side authentication or real user accounts.

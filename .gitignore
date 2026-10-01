@@ -379,6 +379,14 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
+# Vite / Node project output and local env files
+dist/
+dist-ssr/
+*.local
+.env
+.env.*
+!.env.example
+
 # VS Code files for those working on multiple tools
 .vscode/*
 !.vscode/settings.json

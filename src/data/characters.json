@@ -1,0 +1,15 @@
+[
+  {
+    "id": "nyx",
+    "name": "Nyx Vale",
+    "role": "The Unlit Cartographer",
+    "classification": "OBSIDIAN / 07",
+    "status": "AT LARGE",
+    "origin": "The lower rings of Helion",
+    "affiliation": "The Unlit Cartographers",
+    "quote": "A map is only a promise that the dark has edges.",
+    "summary": "Nyx charts the pressure seams beneath Titan's cities, tracing routes that only exist for a few minutes each night. Her maps are considered contraband by every surviving authority.",
+    "secret": "The voice in Nyx's recordings is not hers. It belongs to the moon itself, speaking through the static in a language that predates the first landing.",
+    "voiceLine": "/audio/nyx-voice.mp3"
+  }
+]

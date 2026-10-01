@@ -1,0 +1,17 @@
+{
+  "name": "Shadows of Titan // Field Archive",
+  "short_name": "Shadows of Titan",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#11100f",
+  "theme_color": "#11100f",
+  "description": "A field archive from the Shadows of Titan.",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
