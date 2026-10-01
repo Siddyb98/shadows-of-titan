@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 
 export default function Login() {
-  const { login, isAuthenticated, callsign, demoMode } = useAuth()
+  const { login, isAuthenticated, callsign, supabaseConfigured, clearAuthError } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
-  const [input, setInput] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [submitting, setSubmitting] = useState(false)
   const [booting, setBooting] = useState(true)
   const from = location.state?.from || '/archives'
 
@@ -20,13 +22,25 @@ export default function Login() {
     return () => window.clearTimeout(timer)
   }, [])
 
-  const handleSubmit = (event) => {
+  useEffect(() => () => clearAuthError(), [clearAuthError])
+
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    const clean = input.trim()
-    if (!clean) return setError('// CALLSIGN REQUIRED')
-    if (clean.length < 3) return setError('// CALLSIGN TOO SHORT - MINIMUM 3 CHARACTERS')
-    if (!demoMode) return setError('// PRODUCTION MODE BLOCKED - BACKEND AUTH REQUIRED')
-    if (login(clean)) navigate(from, { replace: true })
+    if (submitting) return
+    setError('')
+    const cleanEmail = email.trim()
+    if (!cleanEmail) return setError('// CALLSIGN EMAIL REQUIRED')
+    if (!password) return setError('// ACCESS KEY REQUIRED')
+    if (!supabaseConfigured) return setError('// AUTH BACKEND NOT CONFIGURED - SET VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY')
+
+    setSubmitting(true)
+    const { error: signInError } = await login(cleanEmail, password)
+    setSubmitting(false)
+    if (signInError) {
+      setError(`// ${signInError.toUpperCase()}`)
+      return
+    }
+    navigate(from, { replace: true })
   }
 
   return (
@@ -37,10 +51,34 @@ export default function Login() {
         <p className="text-[10px] text-aan-white/40 tracking-widest mb-1">AEGIS ASCENSION NEXUS</p>
         <p className="text-[10px] text-aan-white/40 tracking-widest mb-6">ARCHIVE ACCESS TERMINAL // NODE 07</p>
         <h1 className="font-display text-2xl md:text-3xl tracking-widest text-titan-gold mb-8 animate-flicker">CREDENTIAL GATE</h1>
-        {booting ? <div className="space-y-2 text-xs text-aan-white/50"><p>&gt; establishing handshake with Helion node...</p><p>&gt; verifying archive integrity... <span className="text-titan-emerald">OK</span></p><p>&gt; checking local session cache... <span className="text-titan-emerald">OK</span></p><p className="text-titan-gold">&gt; awaiting caller credentials_</p></div> : <form onSubmit={handleSubmit} className="space-y-5"><div><label htmlFor="callsign" className="block text-[10px] text-aan-white/40 tracking-widest mb-2">AAN CALLSIGN</label><div className="flex items-center gap-2 border border-titan-gold/40 bg-void px-3 py-2 focus-within:border-titan-gold transition-colors"><span className="text-titan-gold text-xs tracking-widest">ID&gt;</span><input id="callsign" autoFocus value={input} onChange={(event) => { setInput(event.target.value); setError('') }} maxLength={24} spellCheck={false} placeholder="ENTER CALLSIGN" className="flex-1 bg-transparent text-sm text-titan-emerald outline-none placeholder:text-aan-white/20 tracking-widest uppercase" /></div></div>{error && <p className="text-xs text-forge-magma tracking-widest animate-flicker">{error}</p>}<button type="submit" className="w-full border border-titan-gold/60 py-3 text-xs tracking-widest text-titan-gold hover:bg-titan-gold/10 transition-colors">ESTABLISH SESSION</button><div className="border-l-2 border-cryo-blue/40 bg-cryo-blue/5 p-3 text-[10px] text-aan-white/50 leading-relaxed"><p className="text-cryo-blue tracking-widest mb-1">// NEW CALLER NOTE</p><p>Callsigns are local. Re-enter the same callsign to resume your archive. Fresh callsigns start at CITIZEN clearance. Your record is your own.</p></div>{callsign && <button type="button" onClick={() => setInput(callsign)} className="w-full text-left text-[10px] text-aan-white/40 hover:text-titan-gold tracking-widest transition-colors">-&gt; RESUME AS: {callsign}</button>}</form>}
-        {!demoMode && (
+        {booting ? <div className="space-y-2 text-xs text-aan-white/50"><p>&gt; establishing handshake with Helion node...</p><p>&gt; verifying archive integrity... <span className="text-titan-emerald">OK</span></p><p>&gt; checking session cache... <span className="text-titan-emerald">OK</span></p><p className="text-titan-gold">&gt; awaiting caller credentials_</p></div> : <form onSubmit={handleSubmit} className="space-y-5">
+          <div>
+            <label htmlFor="email" className="block text-[10px] text-aan-white/40 tracking-widest mb-2">AAN CALLSIGN EMAIL</label>
+            <div className="flex items-center gap-2 border border-titan-gold/40 bg-void px-3 py-2 focus-within:border-titan-gold transition-colors">
+              <span className="text-titan-gold text-xs tracking-widest">ID&gt;</span>
+              <input id="email" type="email" autoFocus autoComplete="email" value={email} onChange={(event) => { setEmail(event.target.value); setError('') }} disabled={submitting} spellCheck={false} placeholder="caller@aan.titan" className="flex-1 bg-transparent text-sm text-titan-emerald outline-none placeholder:text-aan-white/20 tracking-widest disabled:opacity-50" />
+            </div>
+          </div>
+          <div>
+            <label htmlFor="password" className="block text-[10px] text-aan-white/40 tracking-widest mb-2">ACCESS KEY</label>
+            <div className="flex items-center gap-2 border border-titan-gold/40 bg-void px-3 py-2 focus-within:border-titan-gold transition-colors">
+              <span className="text-titan-gold text-xs tracking-widest">KEY&gt;</span>
+              <input id="password" type="password" autoComplete="current-password" value={password} onChange={(event) => { setPassword(event.target.value); setError('') }} disabled={submitting} className="flex-1 bg-transparent text-sm text-titan-emerald outline-none placeholder:text-aan-white/20 tracking-widest disabled:opacity-50" />
+            </div>
+          </div>
+          {error && <p className="text-xs text-forge-magma tracking-widest animate-flicker">{error}</p>}
+          <button type="submit" disabled={submitting} className="w-full border border-titan-gold/60 py-3 text-xs tracking-widest text-titan-gold hover:bg-titan-gold/10 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+            {submitting ? <><span className="inline-block w-3 h-3 border-2 border-titan-gold/40 border-t-titan-gold rounded-full animate-spin" aria-hidden="true" />AUTHENTICATING...</> : 'ESTABLISH SESSION'}
+          </button>
+          <div className="border-l-2 border-cryo-blue/40 bg-cryo-blue/5 p-3 text-[10px] text-aan-white/50 leading-relaxed">
+            <p className="text-cryo-blue tracking-widest mb-1">// NEW CALLER NOTE</p>
+            <p>No account on file? <Link to="/signup" className="text-titan-gold underline hover:animate-glitch">REGISTER A NEW CALLSIGN</Link>.</p>
+          </div>
+          {callsign && <p className="text-[10px] text-aan-white/40 tracking-widest">-&gt; LAST SESSION: {callsign}</p>}
+        </form>}
+        {!supabaseConfigured && (
           <div className="mt-6 border border-forge-magma/50 bg-forge-magma/10 p-3 text-[10px] text-forge-magma tracking-widest leading-relaxed">
-            // SECURE MODE ENABLED // LOCAL AUTH IS DISABLED // A BACKEND SESSION IS REQUIRED
+            // AUTH BACKEND NOT CONFIGURED // SET VITE_SUPABASE_URL AND VITE_SUPABASE_ANON_KEY // SEE .ENV.EXAMPLE
           </div>
         )}
         <div className="mt-8 pt-4 border-t border-aan-white/10 text-[10px] text-aan-white/30 tracking-widest">// UNAUTHORISED ACCESS IS A CLASS-4 INFRACTION</div>
