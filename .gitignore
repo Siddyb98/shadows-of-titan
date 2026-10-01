@@ -387,6 +387,9 @@ dist-ssr/
 .env.*
 !.env.example
 
+# Private development notes (not for public repo)
+.private/
+
 # VS Code files for those working on multiple tools
 .vscode/*
 !.vscode/settings.json
