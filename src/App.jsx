@@ -15,6 +15,7 @@ import BookIndex from './pages/book/BookIndex'
 import ChapterReader from './pages/book/ChapterReader'
 import ProtectedRoute from './components/auth/ProtectedRoute'
 import Login from './pages/auth/Login'
+import Signup from './pages/auth/Signup'
 
 function ScrollToTop() {
   const location = useLocation()
@@ -31,6 +32,7 @@ function App() {
     <ScrollToTop />
     <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="archives" element={<ProtectedRoute><ArchiveHome /></ProtectedRoute>} />
